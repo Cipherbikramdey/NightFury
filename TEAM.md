@@ -34,6 +34,7 @@ GitHub: @rohit-nandi
 **Responsibilities:**
 - Feature testing
 - stability checks
+
 GitHub: @Cipherbikramdey
 
 ---
