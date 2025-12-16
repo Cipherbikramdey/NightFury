@@ -28,6 +28,7 @@ Clean attach / detach client sessions
 
 Graceful shutdown & connection cleanup
 
+
 📂 File Transfer
 
 Upload files (supports custom & nested paths)
@@ -66,33 +67,13 @@ selfdestruct / delete command
 
 Client deletes its own script and exits cleanly
 
-📁 Project Structure
-NightFury-C2/
-│
-├── server.py               # C2 server (main)
-├── requirements.txt        # Python dependencies
-├── update.txt              # Feature & update log
-├── downloads/              # Auto-generated client data
-│   └── <client_ip>_<port>/
-│       ├── screenshot_*.png
-│       ├── webcam_*.png
-│       ├── audio_*.wav
-│       ├── keylog_*.txt
-│       └── downloaded_files
-└── README.md
+
 
 ⚙️ Requirements
 
 Install dependencies using:
 
 pip install -r requirements.txt
-
-
-Dependencies 
-
-requirements
-
-:
 
 colorama
 
@@ -107,6 +88,7 @@ pynput
 sounddevice
 
 numpy
+
 
 🚀 Usage
 1️⃣ Start the Server
@@ -151,6 +133,7 @@ C2(1)> audio 10
 Keylogger
 C2(1)> keylogger_start mylog.txt
 C2(1)> keylogger_stop
+
 
 📥 Saved Files Location
 
