@@ -45,7 +45,7 @@ GitHub: @Cipherbikramdey
 - Research references
 - Usage & feature explanation
 
-GitHub: @pritamdas
+GitHub: @daspritam90473-rgb
 
 ---
 
