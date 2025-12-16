@@ -1,12 +1,6 @@
 # NightFury
 # Contributors
 
-## 👥 Team - SHADOWNET
-
-- **Rohit Nandi** – @rohit-nandi  
-- **Chiranjit Ghosh** – @cyberchiranjit  
-- **Bikram Dey** – @cipherbikramdey
-- **Pritam Das** – @pritamdas
 
 NightFury C2 Server
 
