@@ -1,0 +1,7 @@
+colorama
+pyfiglet
+Pillow
+opencv-python
+pynput
+sounddevice
+numpy

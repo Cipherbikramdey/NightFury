@@ -1,0 +1,177 @@
+NightFury C2 Project Updates
+=========================
+
+1. File Upload Capabilities
+   - Basic upload functionality from server to client
+   - Support for custom destination paths (e.g., upload local_file.txt remote/path/file.txt)
+   - Automatic directory creation for nested paths
+   - Base64 encoding for safe file transfer
+   - Error handling for missing files and permissions
+
+2. File Download Capabilities
+   - Download files from client to server
+   - Organized downloads by client IP (downloads/client_ip/files)
+   - Automatic directory creation
+   - Base64 encoding for safe transfer
+   - Preserves original filenames
+
+3. Screenshot Capabilities
+   - Capture client's screen remotely
+   - Automatic timestamp in filename (YYYYMMDD_HHMMSS)
+   - Organized by client IP and port
+   - PNG format for high quality
+   - Error handling for failed captures
+   - Base64 encoding for safe transfer
+   - Automatic directory creation
+   - Command: screenshot
+
+4. Webcam Capture Capabilities
+   - Remotely capture an image from the client's webcam
+   - Automatic timestamp in filename (YYYYMMDD_HHMMSS)
+   - Organized by client IP, port, hostname, and platform
+   - PNG format for high quality
+   - Error handling for failed captures and missing webcam
+   - Base64 encoding for safe transfer
+   - Automatic directory creation
+   - Command: webcam
+
+5. Audio Capture Capabilities
+   - Remotely capture audio from the client's microphone
+   - Operator can specify duration in seconds (audio [seconds], default 5s, max 60s)
+   - Audio is saved as audio_<timestamp>.wav in downloads/<client_ip>_<port>/
+   - Handles missing input device and errors gracefully
+   - Base64 encoding for safe transfer
+   - Automatic directory creation
+   - Command: audio [seconds]
+
+6. Keylogger Capabilities
+   - Remotely start and stop a keylogger on the client
+   - Log file is always saved in downloads/<client_ip>_<port>/
+   - Custom log filename can be specified, or defaults to keylog_<timestamp>.txt
+   - Handles directory creation automatically
+   - Robust error handling for missing dependencies, permissions, and concurrent runs
+   - Commands:
+     * keylogger_start [filename]  (start logging keystrokes)
+     * keylogger_stop              (stop logging)
+   - Keylogs are organized by client IP and port, matching other download structure
+
+7. Error Handling Improvements
+   - File not found validation
+   - Permission checks for reading/writing
+   - Directory existence validation
+   - Invalid path handling
+   - Clear error messages for:
+     * Missing files
+     * Permission denied
+     * Invalid paths
+     * Directory access issues
+     * Data corruption
+     * Screenshot capture failures
+   - No freezing on errors
+   - Safe error recovery
+
+8. Path Handling
+   - Support for spaces in filenames
+   - Support for nested directory paths
+   - Automatic directory creation
+   - Path sanitization and validation
+   - Quotes handling in paths
+
+9. Directory Organization
+   - Downloads, screenshots, webcam images, audio, and keylogs sorted by client IP and port (downloads/client_ip_port/)
+   - Structured directory creation
+   - Path preservation for uploads
+   - Clean organization of transferred files
+   - Timestamp-based naming for screenshots, webcam images, audio, and keylogs
+   - Filenames for downloads, screenshots, webcam images, audio, and keylogs include client IP and port
+
+Security Features
+----------------
+1. File Transfer Security
+   - Base64 encoding for binary file safety
+   - Path validation to prevent directory traversal
+   - Permission checks before operations
+   - Safe error messages (no system info leaks)
+
+2. Session Management
+   - Unique client IDs
+   - IP/port-based organization
+   - Clean session handling
+   - Proper connection cleanup
+
+3. Self-Destruct Feature
+   - Operator can send 'selfdestruct' or 'delete' command to client
+   - Client deletes its own script file and exits cleanly
+   - Handles file lock and permission errors gracefully
+   - Status or error message sent to server
+
+Usage Examples
+--------------
+1. Upload Files:
+   ```
+   C2(1)> upload local_file.txt
+   C2(1)> upload source.txt remote/path/dest.txt
+   ```
+
+2. Download Files:
+   ```
+   C2(1)> download remote_file.txt
+   ```
+
+
+3. Capture Screenshots:
+   ```
+   C2(1)> screenshot
+   ```
+   Screenshots are saved as: screenshot_<client_ip>_<port>_YYYYMMDD_HHMMSS.png
+
+4. Capture Webcam Image:
+   ```
+   C2(1)> webcam
+   ```
+   Webcam images are saved as: webcam_<client_ip>_<port>_YYYYMMDD_HHMMSS.png
+
+5. Audio Capture:
+   ```
+   C2(1)> audio
+   C2(1)> audio 10
+   ```
+   Audio is saved as: audio_<timestamp>.wav in downloads/<client_ip>_<port>/
+
+6. Keylogger Control:
+   ```
+   C2(1)> keylogger_start
+   C2(1)> keylogger_start mylog.txt
+   C2(1)> keylogger_stop
+   ```
+   Keylogs are saved as: keylog_<timestamp>.txt (or custom name) in downloads/<client_ip>_<port>/
+
+6. Self-Destruct Client:
+   ```
+   C2(1)> selfdestruct
+   C2(1)> delete
+   ```
+   Client will delete its own script and exit.
+
+Files are saved to:
+downloads/
+└── client_ip_port/
+   ├── <client_ip>_<port>_<downloaded_file>
+   ├── screenshot_<client_ip>_<port>_YYYYMMDD_HHMMSS.png
+   ├── webcam_<client_ip>_<port>_YYYYMMDD_HHMMSS.png
+   ├── audio_<timestamp>.wav
+   └── keylog_<timestamp>.txt (or custom name)
+
+----
+
+summary - 
+
+1. File upload/download with base64 & error handling
+2. Auto directory creation & custom paths
+3. Organized by hostname, IP, port, and platform
+4. Screenshot & webcam capture with timestamp (PNG)
+5. Audio recording (5–60s) saved as WAV
+6. Remote keylogger start/stop with log saving
+7. Strong error handling & path validation
+8. Structured storage & session management
+9. Self-destruct command to delete client safely
